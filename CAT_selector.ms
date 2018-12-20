@@ -170,16 +170,18 @@ function select_node char_parent node_name = (
 		)
 	)
 
+-- function that extents hidden selected objects
 function ExtentSelected selection_ = (
 	if selection_.count != 0 then
 		(	
+		selectedObjects = (for obj in selection_ collect obj)
 		tmpSphere = Sphere()
 		tmpSphere.pos = selection_.center
 		tmpSphere.radius = length(selection_.max - selection_.min)/2
 		select tmpSphere
 		max zoomext sel
 		delete tmpSphere
-		select selection_
+		select selectedObjects
 		)
 	)
 	
