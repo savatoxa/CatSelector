@@ -170,6 +170,19 @@ function select_node char_parent node_name = (
 		)
 	)
 
+function ExtentSelected selection_ = (
+	if selection_.count != 0 then
+		(	
+		tmpSphere = Sphere()
+		tmpSphere.pos = selection_.center
+		tmpSphere.radius = length(selection_.max - selection_.min)/2
+		select tmpSphere
+		max zoomext sel
+		delete tmpSphere
+		select selection_
+		)
+	)
+	
 callbacks.addScript #selectionSetChanged "switchButtons()" id:#selectionCallbackID
 	
 rollout windowCATSelector "CAT_selector" width:200 height: 625
@@ -308,6 +321,7 @@ rollout windowCATSelector "CAT_selector" width:200 height: 625
 	button btn_MatchIKandFK "Match IK and FK" pos:[25,475] width:150 height:20
 	button btn_IK_all "IK Limb" pos:[25,450] width:70 height:20
 	button btn_FK_all "FK Limb" pos:[105,450] width:70 height:20
+	button btn_extSel "ExtSel" pos:[135,15] width:50 height:30
 	--create lables for displaying IKFKRatio when scene time changes
 	label lbl_LThigh lbl_LThigh_text_ pos:[140,295] width:30 height:15
 	label lbl_RThigh lbl_RThigh_text_ pos:[40,295] width:30 height:15
@@ -440,6 +454,11 @@ rollout windowCATSelector "CAT_selector" width:200 height: 625
 	on btn_LDigit53 changed state do (select_node curr_char LDigit53_name)
 
 	-- call functions corresponding to their buttons
+	on btn_extSel pressed do
+	(
+		ExtentSelected selection
+	)
+	
 	on btn_MatchIKandFK pressed do
 	(
 		MatchIkAndFk selection
