@@ -1,0 +1,9 @@
+Сначала скопируйте папку Icons в c:\Program Files\Autodesk\3ds Max 2018\UI\. Если папки UI не существует 
+то создайте её. 
+Для установки макроскрипта скопировать файлы CAT_selector.ms, launcher_CAT_selector.mcr в папку 
+c:\Program Files\Autodesk\3ds Max 2018\MacroScripts\, 
+перезапустить макс , затем открыть меню Customize -> Customize User Interface. В зависимости от того хотите ли вы
+вынести скрипт на хоткей или на кнопку выбрать вкладку Keybord или Toolbars соответственно.
+Затем в выпадающем меню Category выбрать категорию Whalekit Scripts.
+Затем в появившемся списке выбрать CAT_selector и либо повесить его на хоткей в окне Hotkey либо дропнуть его
+на какой-нибудь тулбар. Если такого нет то создать его по кнопке New.
