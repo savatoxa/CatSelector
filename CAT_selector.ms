@@ -8,6 +8,7 @@ for obj in helpers do
 	if classof obj == CATParent then append char_names obj.name
 )
 
+
 -- create list of buttons names corresponding to selected CAT bones belonging to curr_char parent
 function createSelectedCatBonesList = (
 	global selected_cat_bones = #()
@@ -101,14 +102,11 @@ function set_IKFK_ratio char_parent selection_ arg = (
 
 -- this func returns IKFK_ratio of limb of current character in format "n.m"
 function get_IKFK char_parent node_name = (
-	try
-	(
 		if (getNodeByName char_parent).GetBoneByAddress node_name != undefined then
 			(
 			substring ((((getNodeByName char_parent).GetBoneByAddress node_name).transform.controller.LimbData.layerIKFKRatio) as string) 1 3
 			)
-		)
-		catch ("")
+		else ("null")
 	)
 
 function selectAllChilds list = (
@@ -365,12 +363,10 @@ rollout windowCATSelector "CAT_selector" width:200 height: 625
 			)
 	-- this 4 functions grouped in one
 	function tcb_limbs_function = (
-		try (
 			lbl_LThigh_text()
 			lbl_RThigh_text()
 			lbl_LUpperarm_text()
 			lbl_RUpperarm_text()
-			) catch()
 		)
 	
 	-- define time callback for upper function, now every time timeslider changes this function will be xecuted
