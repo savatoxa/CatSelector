@@ -102,11 +102,13 @@ function set_IKFK_ratio char_parent selection_ arg = (
 
 -- this func returns IKFK_ratio of limb of current character in format "n.m"
 function get_IKFK char_parent node_name = (
+		try (
 		if (getNodeByName char_parent).GetBoneByAddress node_name != undefined then
 			(
 			substring ((((getNodeByName char_parent).GetBoneByAddress node_name).transform.controller.LimbData.layerIKFKRatio) as string) 1 3
 			)
 		else ("null")
+		)catch()
 	)
 
 function selectAllChilds list = (
@@ -347,19 +349,27 @@ rollout windowCATSelector "CAT_selector" width:200 height: 625
 	
 	-- functions that get IKFKRatio from 4 limbs for their lables
 		function lbl_LThigh_text = (
+			try(
 			lbl_LThigh.text = get_IKFK curr_char LThigh_name
+			)catch()
 			)
 
 		function lbl_RThigh_text = (
+			try(
 			lbl_RThigh.text = get_IKFK curr_char RThigh_name
+			)catch()
 			)
 			
 		function lbl_LUpperarm_text = (
+			try(
 			lbl_LUpperarm.text = get_IKFK curr_char LUpperarm_name
+			)catch()
 			)
 		
 		function lbl_RUpperarm_text = (
+			try(
 			lbl_RUpperarm.text = get_IKFK curr_char RUpperarm_name
+			)catch()
 			)
 	-- this 4 functions grouped in one
 	function tcb_limbs_function = (
